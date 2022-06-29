@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/MauroGGutierrez/API-REST-Dogs/issues"
   },
-  "homepage": "https://github.com/MauroGGutierrez/API-REST-Dogs#readme"
+  "homepage": "https://github.com/MauroGGutierrez/API-REST-Dogs#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
+  }
 }
