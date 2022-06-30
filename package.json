@@ -4,7 +4,8 @@
   "description": "hola mundo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node ./src/server.ts"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,16 @@
   "homepage": "https://github.com/MauroGGutierrez/API-REST-Dogs#readme",
   "dependencies": {
     "express": "^4.18.1",
+    "mongoose": "^6.4.1",
     "ts-node": "^10.8.1",
     "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.2",
+    "@types/cors": "^2.8.12",
+    "@types/debug": "^4.1.7",
+    "@types/express": "^4.17.13",
+    "source-map-support": "^0.5.21",
+    "tslint": "^6.1.3"
   }
 }
