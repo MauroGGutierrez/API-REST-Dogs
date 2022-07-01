@@ -1,9 +1,9 @@
-import * as mongoose from "mongoose";
 import express from "express";
-import * as bodyParser from "body-parser";
+import mongoose from "mongoose";
+import bodyParser from "body-parser";
 
 import AppRoutes from "./routes/index";
-// import DevConfig from "./config/environments/development";
+import DevConfig from "./config/environments/development";
 
 class App {
   public app: express.Application = express();
@@ -11,7 +11,7 @@ class App {
   public config = new DevConfig();
   appRoutes = new AppRoutes();
 
-  constructor(controllers: any, port: string) {
+  constructor(port: number) {
     this.app = express();
     this.port = 3000;
 
@@ -23,12 +23,11 @@ class App {
     this.app.use(bodyParser.json());
   }
   // Initialize all the routes of the application
-  private initializeRouters(router: any) {
+  private initializeRouters(router: any[]) {
     router.forEach((routes: any) => {
       this.app.use("/", routes);
     });
   }
-
   // Server will listen to this port
   public listen() {
     this.app.listen(this.port, () => {

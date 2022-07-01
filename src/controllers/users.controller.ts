@@ -1,4 +1,4 @@
-import * as express from "express";
+import express from "express";
 import UserModel from "../models/user";
 
 class UserController {
@@ -12,38 +12,34 @@ class UserController {
     },
   ];
   // Business Logic for GET API
-  getAllPosts = (req: express.Request, res: express.Response) => {
-    res.status(200).send(this.posts);
+  getAllDogs = async (req: express.Request, res: express.Response) => {
+    const AllDogs = await this.user.getAllDogs();
+    res.status(200).send(AllDogs);
   };
   // get user for id
-
-  async getUserById(req: express.Request, res: express.Response) {
-    const userById = await this.user.getUserForId(req.body.id);
+  getDogById = async (req: express.Request, res: express.Response) => {
+    const userById = await this.user.getDogForId(req.params.id);
     res.status(200).send(userById);
-  }
+  };
 
   // Business Logic for POST API
-  createAPost = (req: express.Request, res: express.Response) => {
+  createDog = async (req: express.Request, res: express.Response) => {
     // Moongo DB Insert Operation
-    this.user.saveUser(this.posts, (err: any, user: any) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send(user);
-      }
-    });
+    const userId = await this.user.addNewDog(req.body);
+    res.status(200).send({ id: userId });
   };
-  //remove user for id
-  async removeUser(req: express.Request, res: express.Response) {
-    console.log(await this.user.removeUserById(req.body.id));
-    res.status(204).send("eliminated dog data");
-  }
 
   // put user for id
-  async putUserById(req: express.Request, res: express.Response) {
-    console.log(await this.user.putUser(req.body.id, req.body));
-    res.status(204).send("actualized dog data");
-  }
+  putDogById = async (req: express.Request, res: express.Response) => {
+    const putDog = await this.user.putDogData(req.params.id, req.body);
+    res.status(200).send("actualized dog data");
+  };
+
+  //remove user for id
+  removeDog = async (req: express.Request, res: express.Response) => {
+    const deleteDog = await this.user.removeDogById(req.params.id);
+    res.status(200).send("eliminated dog data");
+  };
 }
 
 export default UserController;
