@@ -9,8 +9,16 @@ const userSchema = new mongoose.Schema(
     _id: String,
     name: String,
     age: String,
-    breed: ["salchicha", "chihuahua", "caniche", "ovejero"],
-    coat_color: ["negro", "blanco", "overo", "marron"],
+    breed: {
+      type: String,
+      enum: ["salchicha", "chihuahua", "caniche", "ovejero", "cruza"],
+      default: "cruza",
+    },
+    coat_color: {
+      type: String,
+      enum: ["negro", "blanco", "overo", "marron", "gris"],
+      default: "negro",
+    },
     picture_url: String,
     owner_name: String,
   },
